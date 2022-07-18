@@ -18,6 +18,7 @@ body {
     top: 0;
     background-color: #000000;
     color: #fff;
+    z-index: 999;
 }
 
 .nav__container {
@@ -45,6 +46,7 @@ body {
     color: #fff;
     transition: all .8s ease;
 }
+
 .fondoBurguer{
     background-color: rgba(120, 120, 120, 0.537);
     color: #fff;
@@ -57,23 +59,17 @@ body {
     color: #fff;
 }
 
-.nav__item:hover {
-    color: #fdbe01;
-}
-
-.nav__item a:hover {
+.nav__item a:hover{
     color: #fdbe01;
 }
 
 .nav__ul {
-
     text-decoration: none;
 }
 
 .nav__label,
 .nav__input {
     display: none;
-
 }
 
 
@@ -95,7 +91,6 @@ body {
         flex-direction: column;
         align-items: center;
         clip-path: circle(0.0% at 50% 50%);
-        ;
         transition: clip-path 1s ease-in-out;
     }
 
