@@ -3,20 +3,15 @@
     padding: 30px;
 }
 
-.d_articulos {
-   
-}
-
-.zapatilla {
+#zapatilla {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     color: #fff;
     text-align: center;
 }
-.zapatilla img{
+
+#zapatilla img{
     width: 200px;
-}
-p .p_articulos{
 }
 
 .tit{

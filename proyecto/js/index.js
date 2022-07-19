@@ -62,7 +62,7 @@ const zapatillas=[
 
 const doc = document;
 
-let zapas = doc.querySelector(".zapatilla");
+let zapas = document.querySelector("#zapatilla");
 
 zapatillas.forEach(i => {
     zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
