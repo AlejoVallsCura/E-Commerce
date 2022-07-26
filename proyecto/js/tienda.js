@@ -61,7 +61,7 @@ const zapatillas = [{
 let zapas = document.querySelector("#zapatilla");
 
 zapatillas.forEach(i => {
-zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
+zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca} ${i.nombre}</p> <p>${i.image}</p> </p> <button class="buy-btn">Comprar</button> </div>`
 });
 
 
@@ -69,7 +69,7 @@ let boton_todas = document.getElementById("boton_todas");
 boton_todas.addEventListener("click", function(){
 zapas.innerHTML = ""
 zapatillas.forEach(i => {
-    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
+    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca} ${i.nombre}</p> <p>${i.image}</p>  <button class="buy-btn">Comprar</button> </div>`
 });
 });
 
@@ -79,7 +79,7 @@ zapas.innerHTML = ""
 const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Nike");
 console.log(filtro);
 filtro.forEach(i => {
-    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
+    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca} ${i.nombre}</p> <p>${i.image}</p>  </p> <button class="buy-btn">Comprar</button></div>`
 });
 });
 
@@ -89,7 +89,7 @@ zapas.innerHTML = ""
 const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Adidas");
 console.log(filtro);
 filtro.forEach(i => {
-    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
+    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca} ${i.nombre}</p> <p>${i.image}</p>  </p> <button class="buy-btn">Comprar</button></div>`
 });
 });
 
@@ -100,7 +100,7 @@ zapas.innerHTML = ""
 const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Asics");
 console.log(filtro);
 filtro.forEach(i => {
-    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
+    zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca} ${i.nombre}</p> <p>${i.image}</p>  </p> <button class="buy-btn">Comprar</button></div>`
 });
 });
 
