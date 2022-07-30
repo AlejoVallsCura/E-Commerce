@@ -12,6 +12,8 @@ body {
 }
 
 
+
+
 /*-----------NAVBAR-----------*/
 
 .etiqueta__nav {
@@ -39,6 +41,7 @@ body {
     display: grid;
     grid-auto-flow: column;
     gap: 3em;
+    text-decoration: none;
 }
 
 .nav__item {
@@ -63,10 +66,10 @@ body {
 .nav__item a:hover{
     color: #fdbe01;
 }
-
-.nav__ul {
-    text-decoration: none;
+i a:hover{
+    color: #fdbe01;
 }
+
 
 .nav__label,
 .nav__input {
@@ -81,19 +84,19 @@ body {
     }
 
     .nav__ul {
-        padding: 0;
         margin: 0;
-        bottom: 0;
-        left: 0;
+        padding: 0;
         position: fixed;
-        text-transform: uppercase;
-        width: 100%;
         top: 80px;
-        background: #000000e7;
+        bottom: 0;
+        background: #000000df;
+        width: 100%;
+        left: 0;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        clip-path: circle(0.0% at 50% 50%);
         transition: clip-path 1s ease-in-out;
     }
 

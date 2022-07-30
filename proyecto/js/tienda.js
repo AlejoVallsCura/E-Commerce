@@ -70,17 +70,16 @@ const zapatillas = [{
         precio: "22.300",
         image: "<img src='/proyecto/imagenes/zapatillas/otroLogo-removebg-preview.png' />"
     }
-
 ];
 
 
-
+//  FILTRTADO DE ZAPATILLAS
 
 let zapas = document.querySelector("#zapatilla");
 
 zapatillas.forEach(i => {
     zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$ ${i.precio}</h4>  <p>${i.image}</p> </p>
-    <button class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
+    <button id="agregarModal" class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
 });
 
 
@@ -89,7 +88,7 @@ boton_todas.addEventListener("click", function () {
     zapas.innerHTML = ""
     zapatillas.forEach(i => {
         zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p> </p>
-        <button class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
+        <button id="agregarModal" class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
     });
 });
 
@@ -128,11 +127,14 @@ boton_ascics.addEventListener("click", function () {
 });
 
 
-
-
-////////////////     BOTON COMPRAR - CARRITO       ////////////////
+//  BOTON COMPRAR - CARRITO 
 
 let carrito = [];
+
+function traerLocalStorage(){
+    carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+}
+traerLocalStorage();
 
 let btn_compra = document.querySelectorAll(".botonCompra");
 
@@ -141,16 +143,11 @@ for (let boton of btn_compra) {
 }
 
 function agregar_al_carrito(e) {
+    let padre = e.target.parentNode;
 
-    let hijo = e.target;
-    let padre = hijo.parentNode;
     let nombre_producto = padre.querySelector("h5").textContent;
-    //console.log(nombre_producto);
     let precio_producto = padre.querySelector("h4").textContent;
-    //console.log(precio_producto);
     let img_producto = padre.querySelector("img").src;
-    //console.log(img_producto);
-
 
     let producto = {
         nombre : nombre_producto,
@@ -159,54 +156,48 @@ function agregar_al_carrito(e) {
         img : img_producto
     };
 
-
     carrito.push(producto);
 
     let arreglo_JSON = JSON.stringify(carrito);
     localStorage.setItem("carrito", arreglo_JSON);
 
-    mostrar_carrito( producto);
+    Swal.fire({
+        title: 'Bien',
+        text: 'Se agrego producto al carrito!',
+        icon:'success'
+    })
 
 }
 
-function mostrar_carrito( producto){
+let container = document.getElementById("carrito");
 
+carrito.forEach(e => {
     let fila = document.createElement("tr");
 
-    fila.innerHTML = `<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
-    <td><img src="${producto.img}" height=60px></td>
-    <td>${producto.nombre} </td>
-    <td>${producto.cantidad} </td>
-    <td>${producto.precio} </td>`;
+    fila.classList ='table'
+    const tablaHTML = `<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
+    <td><img src="${e.img}" height=60px></td>
+    <td>${e.nombre} </td>
+    <td>${e.cantidad} </td>
+    <td>${e.precio} </td><br>`;
 
     let tabla = document.getElementById("tbody");
     tabla.append(fila);
 
-    let botones_borrar = document.querySelectorAll(".borrar_elemento");
+    container.innerHTML += tablaHTML;
+});
 
-    for(let btn of botones_borrar){
-        btn.addEventListener("click" , borrar_producto)
-    }
+// borrar_producto()
+// function borrar_producto(e){
+//     let abuelo = e.target.parentNode.parentNode;
+//     abuelo.remove();
 
-}
-
-function borrar_producto(e){
-
-    let abuelo = e.target.parentNode.parentNode;
-
-    abuelo.remove();
-}
-
-
-
-
-
-
-
-
-
-
-
+//     Swal.fire({
+//         icon: 'error',
+//         title: 'Oops...',
+//         text: 'Something went wrong!'
+//     })
+// }
 
 
 
