@@ -169,42 +169,42 @@ function agregar_al_carrito(e) {
         icon:'success'
     })
     
-    
+    setTimeout(() => {  window.location.reload() },3000)
 }
 
 let container = document.getElementById("carrito");
 
 carrito.forEach(e => {
     let fila = document.createElement("tr");
+    let tabla = document.getElementById("tbody");
 
-    fila.classList ='table'
-    const tablaHTML = `<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
+    fila.innerHTML =`<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
     <td><img src="${e.img}" height=60px></td>
     <td>${e.nombre} </td>
     <td>${e.cantidad} </td>
-    <td>${e.precio} </td><br>`;
+    <td>${e.precio} </td>`;
 
-    let botones_borrar = document.querySelectorAll("borrar_elemento");
+    let botones_borrar = document.querySelectorAll(".borrar_elemento");
     for(let btn of botones_borrar){
         btn.addEventListener("click" , borrar_producto)
     }
 
-    let tabla = document.getElementById("tbody");
     tabla.append(fila);
 
-    container.innerHTML += tablaHTML;
 });
 
 function borrar_producto(e){
-    abuelo = e.target.parentNode.parentNode;
-    abuelo.remove();
+    
+    localStorage.removeItem("carrito", e.target);
 
     Swal.fire({
         icon: 'error',
-        title: 'Oops...',
+        title: '',
         text: 'Something went wrong!'
     })
 }
+
+
 
 
 
