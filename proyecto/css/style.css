@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Saira:wght@300;400&display=swap');   
-*{ 
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Saira', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #fff;
 }
 
@@ -86,6 +85,7 @@ i a:hover{
     .nav__ul {
         margin: 0;
         padding: 0;
+
         position: fixed;
         top: 80px;
         bottom: 0;
@@ -111,76 +111,10 @@ i a:hover{
 
 
 /*-----------    BODY   -----------*/
-.tit{
-    margin-top: 100px;
-    text-align: center;
-    margin: 80px auto 80px;
-    position: relative;
-    line-height: 60px;
-    color:#fff;
-}
-
-.tit::after {
-    content: '';
-    text-align: center;
-    background: #fdbe01;
-    width: 80px;
-    height: 5px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 
 .titulo{
-    color: #fdbe01;
     text-align: center;
     margin-top: 10%;
     font-size: 55px;
-    margin-bottom: 20px;
-}
 
-.banner {
-    width: 100%;
-    height: 30vh;
-    background-size: cover;
-    background-position: top 70px right;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: auto;
 }
-
-.banner-1 {
-    background-image: url(../imagenes/fondos/pexels-kaique-rocha-90365.jpg);
-}
-.banner-2 {
-    background-image: url(../imagenes/fondos/pexels-malcolm-garret-4656606.jpg);
-}
-.banner-3 {
-    background-image: url(../imagenes/fondos/pexels-grailify-4495409.jpg);
-}
-.banner-1, .banner-2, .banner-3 {
-    margin-bottom: 50px;
-}
-.banner-1 a, .banner-2 a, .banner-3 a {
-    text-decoration: none;
-    text-transform: uppercase;
-    border: none;
-    padding: 20 20 20 20;
-    border-radius: 4px;
-    color: #000000;
-    background-color: #fdbe01;
-}
-.banner-1 a:hover, .banner-2 a:hover, .banner-3 a:hover {
-    color: #000000;
-}
-.banner-3 {
-    margin-bottom: 200px;
-}
-

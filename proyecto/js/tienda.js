@@ -145,7 +145,7 @@ for (let boton of btn_compra) {
 
 function agregar_al_carrito(e) {
     let padre = e.target.parentNode;
-
+    
     let nombre_producto = padre.querySelector("h5").textContent;
     let precio_producto = padre.querySelector("h4").textContent;
     let img_producto = padre.querySelector("img").src;
@@ -205,6 +205,8 @@ function borrar_producto(e){
         text: 'Something went wrong!'
     })
 }
+
+
 
 
 
