@@ -61,6 +61,7 @@
     cursor: pointer;
     border: 2px solid #fdbe01;
     margin: 10px;
+    box-shadow: 1px 1px 6px 1px #fff;
 }
 
 .d_articulos img {

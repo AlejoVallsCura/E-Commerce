@@ -4,7 +4,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "Air Force 1",
         precio: "31.000",
-        image: "<img src='/proyecto/imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
     },
     {
         id: 2,
@@ -12,7 +12,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "All Star",
         precio: "28.000",
-        image: "<img src='/proyecto/imagenes/zapatillas/wjffl5e1.bmp' />"
+        image: "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
     },
     {
         id: 3,
@@ -20,7 +20,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "Revolution",
         precio: "20.600",
-        image: "<img src='/proyecto/imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
     },
     {
         id: 4,
@@ -28,7 +28,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "EQ78",
         precio: "19.000",
-        image: "<img src='/proyecto/imagenes/zapatillas/zapatillas-deportivas-moda-11910482-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/zapatillas-deportivas-moda-11910482-removebg-preview.png' />"
     },
     {
         id: 5,
@@ -36,7 +36,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "NMD",
         precio: "11.200",
-        image: "<img src='/proyecto/imagenes/zapatillas/wjffl5e1.bmp' />"
+        image: "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
     },
     {
         id: 6,
@@ -44,7 +44,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "Run-T",
         precio: "18.000",
-        image: "<img src='/proyecto/imagenes/zapatillas/zapatillas-deportivas-moda-11910482-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/zapatillas-deportivas-moda-11910482-removebg-preview.png' />"
     },
     {
         id: 7,
@@ -52,7 +52,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "Air Force 1",
         precio: "14.900",
-        image: "<img src='/proyecto/imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
     },
     {
         id: 8,
@@ -60,7 +60,7 @@ const zapatillas = [{
         categoria: "",
         nombre: "All Star",
         precio: "16.500",
-        image: "<img src='/proyecto/imagenes/zapatillas/wjffl5e1.bmp' />"
+        image: "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
     },
     {
         id: 9,
@@ -68,10 +68,9 @@ const zapatillas = [{
         categoria: "",
         nombre: "Revolution",
         precio: "22.300",
-        image: "<img src='/proyecto/imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+        image: "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
     }
 ];
-
 
 //  FILTRTADO DE ZAPATILLAS
 
@@ -127,6 +126,8 @@ boton_ascics.addEventListener("click", function () {
 });
 
 
+
+
 //  BOTON COMPRAR - CARRITO 
 
 let carrito = [];
@@ -161,12 +162,14 @@ function agregar_al_carrito(e) {
     let arreglo_JSON = JSON.stringify(carrito);
     localStorage.setItem("carrito", arreglo_JSON);
 
+    
     Swal.fire({
         title: 'Bien',
         text: 'Se agrego producto al carrito!',
         icon:'success'
     })
-
+    
+    
 }
 
 let container = document.getElementById("carrito");
@@ -181,23 +184,28 @@ carrito.forEach(e => {
     <td>${e.cantidad} </td>
     <td>${e.precio} </td><br>`;
 
+    let botones_borrar = document.querySelectorAll("borrar_elemento");
+    for(let btn of botones_borrar){
+        btn.addEventListener("click" , borrar_producto)
+    }
+
     let tabla = document.getElementById("tbody");
     tabla.append(fila);
 
     container.innerHTML += tablaHTML;
 });
 
-// borrar_producto()
-// function borrar_producto(e){
-//     let abuelo = e.target.parentNode.parentNode;
-//     abuelo.remove();
+function borrar_producto(e){
+    abuelo = e.target.parentNode.parentNode;
+    abuelo.remove();
 
-//     Swal.fire({
-//         icon: 'error',
-//         title: 'Oops...',
-//         text: 'Something went wrong!'
-//     })
-// }
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+    })
+}
+
 
 
 
@@ -235,3 +243,4 @@ carrito.forEach(e => {
 // zapatillas.forEach(i => {
 //     zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
 // });
+
