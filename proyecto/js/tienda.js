@@ -149,7 +149,7 @@ function agregar_al_carrito(e) {
     let nombre_producto = padre.querySelector("h5").textContent;
     let precio_producto = padre.querySelector("h4").textContent;
     let img_producto = padre.querySelector("img").src;
-    console.log(img_producto);
+    
     let producto = {
         nombre : nombre_producto,
         precio : precio_producto,
