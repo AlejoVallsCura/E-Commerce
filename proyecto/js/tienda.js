@@ -82,48 +82,48 @@ zapatillas.forEach(i => {
 });
 
 
-let boton_todas = document.getElementById("boton_todas");
-boton_todas.addEventListener("click", function () {
-    zapas.innerHTML = ""
-    zapatillas.forEach(i => {
-        zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p> </p>
-        <button id="agregarModal" class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
-    });
-});
+// let boton_todas = document.getElementById("boton_todas");
+// boton_todas.addEventListener("click", function () {
+//     zapas.innerHTML = ""
+//     zapatillas.forEach(i => {
+//         zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p> </p>
+//         <button id="agregarModal" class="buy-btn botonCompra">Agregar al Carrito</button> </div>`
+//     });
+// });
 
-let boton_nike = document.getElementById("boton_nike");
-boton_nike.addEventListener("click", function () {
-    zapas.innerHTML = ""
-    const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Nike");
-    console.log(filtro);
-    filtro.forEach(i => {
-        zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p>  </p> 
-        <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
-    });
-});
+// let boton_nike = document.getElementById("boton_nike");
+// boton_nike.addEventListener("click", function () {
+//     zapas.innerHTML = ""
+//     const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Nike");
+//     console.log(filtro);
+//     filtro.forEach(i => {
+//         zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p>  </p> 
+//         <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
+//     });
+// });
 
-let boton_adidas = document.getElementById("boton_adidas");
-boton_adidas.addEventListener("click", function () {
-    zapas.innerHTML = ""
-    const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Adidas");
-    console.log(filtro);
-    filtro.forEach(i => {
-        zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p>  </p> 
-        <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
-    });
-});
+// let boton_adidas = document.getElementById("boton_adidas");
+// boton_adidas.addEventListener("click", function () {
+//     zapas.innerHTML = ""
+//     const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Adidas");
+//     console.log(filtro);
+//     filtro.forEach(i => {
+//         zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4>$${i.precio}</h4> <p>${i.image}</p>  </p> 
+//         <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
+//     });
+// });
 
 
-let boton_ascics = document.getElementById("boton_ascics");
-boton_ascics.addEventListener("click", function () {
-    zapas.innerHTML = ""
-    const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Asics");
-    console.log(filtro);
-    filtro.forEach(i => {
-        zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4> $${i.precio}</h4> <p>${i.image}</p>  </p>
-        <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
-    });
-});
+// let boton_ascics = document.getElementById("boton_ascics");
+// boton_ascics.addEventListener("click", function () {
+//     zapas.innerHTML = ""
+//     const filtro = zapatillas.filter(filtradoZapas => filtradoZapas.marca === "Asics");
+//     console.log(filtro);
+//     filtro.forEach(i => {
+//         zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <h5>${i.marca} ${i.nombre}</h5> <h4> $${i.precio}</h4> <p>${i.image}</p>  </p>
+//         <button class="buy-btn botonCompra">Agregar al Carrito</button></div>`
+//     });
+// });
 
 
 
@@ -149,7 +149,7 @@ function agregar_al_carrito(e) {
     let nombre_producto = padre.querySelector("h5").textContent;
     let precio_producto = padre.querySelector("h4").textContent;
     let img_producto = padre.querySelector("img").src;
-
+    console.log(img_producto);
     let producto = {
         nombre : nombre_producto,
         precio : precio_producto,
@@ -169,7 +169,7 @@ function agregar_al_carrito(e) {
         icon:'success'
     })
     
-    setTimeout(() => {  window.location.reload() },3000)
+    setTimeout(() => {window.location.reload() },3000)
 }
 
 let container = document.getElementById("carrito");
@@ -190,7 +190,6 @@ carrito.forEach(e => {
     }
 
     tabla.append(fila);
-
 });
 
 function borrar_producto(e){
@@ -199,10 +198,25 @@ function borrar_producto(e){
 
     Swal.fire({
         icon: 'error',
-        title: '',
-        text: 'Something went wrong!'
+        title: 'Se elimino un producto',
+        text: 'Que lastima!'
     })
 }
+
+
+let vaciar_carro = document.querySelectorAll(".vaciar_carrito");
+
+function vaciar_carrito(e){
+    
+    localStorage.removeItem("carrito", e.target);
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Se vacio el carrito',
+        text: 'Ve a la tienda a llenarlo!'
+    })
+}
+
 
 
 

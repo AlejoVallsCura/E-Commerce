@@ -86,6 +86,13 @@
     opacity: 1;
 } 
 
+.borrar_elemento{
+    color: #fff;
+    transition: all 1s;
+}
+.borrar_elemento:hover{
+    color: rgb(255, 115, 115);
+}
 
 
 
