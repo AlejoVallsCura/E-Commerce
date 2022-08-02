@@ -177,7 +177,6 @@ function agregar_al_carrito(e) {
 }
 
 function borrar_producto(e) {
-console.log("holaas")
     let producto = e.target.parentNode.parentNode 
     producto.remove();
     localStorage.clear();
@@ -217,6 +216,7 @@ function mostrarCarrito() {
 
     main.appendChild(carritoContainer);
 
+
     carrito.forEach(e => {
         let fila = document.createElement("tr");
         let tabla = document.getElementById("tbody");
@@ -226,6 +226,7 @@ function mostrarCarrito() {
         <td>${e.nombre} </td>
         <td>${e.cantidad} </td>
         <td>${e.precio} </td>`;
+
 
         let botones_borrar = document.querySelectorAll(".borrar_elemento");
         for (let btn of botones_borrar) {
@@ -240,7 +241,7 @@ function mostrarCarrito() {
     footer.innerHTML = ''
 
     if (carrito.length === 0) {
-            footer.innerHTML = '<th scope="row" colspan="5" class="carritoVacio text-center "> Carrito Vacio - Comience a Comprar!</th>'
+            footer.innerHTML = `<th scope="row" colspan="5" class="carritoVacio text-center ">   -   Carrito Vacio   -   <a class="botonVolverTienda" href="./tienda.html">  Comprar ahora  </a> -</th>`
         return
     }
 
@@ -249,8 +250,8 @@ function mostrarCarrito() {
             <td><button class="btn btn-danger btn-sm" id="vaciar_carro">Vaciar todo</button></td>
             <td><button class="btn btn-success btn-sm" id="">Comprar</button></td>
             <td>Total productos</td>
-            <td> 13</td>
-            <td class="font-weight-bold"> $32.000</td>`
+            <td>${carrito.length}</td>
+            <td class="font-weight-bold"> $</td>`
             let boton_vaciar = document.getElementById("vaciar_carro");
             boton_vaciar.addEventListener("click", vaciar_carrito);
         return  

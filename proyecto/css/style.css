@@ -172,7 +172,7 @@ i a:hover{
     text-decoration: none;
     text-transform: uppercase;
     border: none;
-    padding: 20 20 20 20;
+    padding: 2px 5px 2px 5px;
     border-radius: 4px;
     color: #000000;
     background-color: #fdbe01;
@@ -183,4 +183,17 @@ i a:hover{
 .banner-3 {
     margin-bottom: 200px;
 }
+.botonVolverTienda {
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    padding: 2px 5px 2px 5px;
+    border-radius: 4px;
+    color: #000000;
+    background-color: #fdbe01;
+}
+.botonVolverTienda:hover {
+    color: #000000;
+}
+
 
