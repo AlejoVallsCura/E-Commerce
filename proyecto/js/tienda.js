@@ -132,7 +132,7 @@ zapatillas.forEach(i => {
 
 let carrito = [];
 
-function traerLocalStorage(){
+function traerLocalStorage() {
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 }
 traerLocalStorage();
@@ -143,18 +143,19 @@ for (let boton of btn_compra) {
     boton.addEventListener("click", agregar_al_carrito);
 }
 
+
 function agregar_al_carrito(e) {
     let padre = e.target.parentNode;
-    
+
     let nombre_producto = padre.querySelector("h5").textContent;
     let precio_producto = padre.querySelector("h4").textContent;
     let img_producto = padre.querySelector("img").src;
-    
+
     let producto = {
-        nombre : nombre_producto,
-        precio : precio_producto,
-        cantidad : 1,
-        img : img_producto
+        nombre: nombre_producto,
+        precio: precio_producto,
+        cantidad: 1,
+        img: img_producto
     };
 
     carrito.push(producto);
@@ -162,54 +163,120 @@ function agregar_al_carrito(e) {
     let arreglo_JSON = JSON.stringify(carrito);
     localStorage.setItem("carrito", arreglo_JSON);
 
-    
+
     Swal.fire({
         title: 'Bien',
         text: 'Se agrego producto al carrito!',
-        icon:'success'
+        icon: 'success'
     })
-    
-    setTimeout(() => {window.location.reload() },3000)
+
+    let botones_borrar = document.querySelectorAll('.btn-borrar');
+    for (const boton of botones_borrar) {
+        boton.addEventListener('click', borrar_producto);
+    }
 }
 
-let container = document.getElementById("carrito");
+function borrar_producto(e) {
+console.log("holaas")
+    let producto = e.target.parentNode.parentNode 
+    producto.remove();
+    localStorage.clear();
+    let arreglo_JSON = JSON.stringify(carrito);
+    localStorage.setItem("carrito", arreglo_JSON);
+}
 
-carrito.forEach(e => {
-    let fila = document.createElement("tr");
-    let tabla = document.getElementById("tbody");
+document.getElementById("carroBoton").addEventListener("click", mostrarCarrito);
 
-    fila.innerHTML =`<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
-    <td><img src="${e.img}" height=60px></td>
-    <td>${e.nombre} </td>
-    <td>${e.cantidad} </td>
-    <td>${e.precio} </td>`;
+function mostrarCarrito() {
+    let main = document.getElementById("main");
+    main.innerHTML = ''
+    let carritoContainer = document.createElement('div');
+    carritoContainer.classList.add('contenedor_carro')
+    carritoContainer.innerHTML = `<h2 class="text-center">FootShop</h2>
+        <p class="text-center">Revisa tus productos:</p>
+        <table class="table table-condensed container">
+            <thead>
+                <tr>
+                    <td>Borrar</td>
+                    <td>Imagen</td>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+            </thead>
+            <tbody id="tbody">
 
-    let botones_borrar = document.querySelectorAll(".borrar_elemento");
-    for(let btn of botones_borrar){
-        btn.addEventListener("click" , borrar_producto)
+            </tbody>
+            <tfoot>
+                <tr id="footer">
+                    
+                </tr>
+            </tfoot>
+        </table>
+        `
+
+    main.appendChild(carritoContainer);
+
+    carrito.forEach(e => {
+        let fila = document.createElement("tr");
+        let tabla = document.getElementById("tbody");
+
+        fila.innerHTML = `<td><a class="fa-solid fa-trash-can borrar_elemento"></a></td>
+        <td><img src="${e.img}" height=60px></td>
+        <td>${e.nombre} </td>
+        <td>${e.cantidad} </td>
+        <td>${e.precio} </td>`;
+
+        let botones_borrar = document.querySelectorAll(".borrar_elemento");
+        for (let btn of botones_borrar) {
+            btn.addEventListener("click", borrar_producto)
+        }
+        tabla.append(fila);
+    });
+
+
+    const footer = document.getElementById('footer');
+
+    footer.innerHTML = ''
+
+    if (carrito.length === 0) {
+            footer.innerHTML = '<th scope="row" colspan="5" class="carritoVacio text-center "> Carrito Vacio - Comience a Comprar!</th>'
+        return
     }
 
-    tabla.append(fila);
-});
-
-function borrar_producto(e){
+    if (carrito.length > 0) {
+            footer.innerHTML = `
+            <td><button class="btn btn-danger btn-sm" id="vaciar_carro">Vaciar todo</button></td>
+            <td><button class="btn btn-success btn-sm" id="">Comprar</button></td>
+            <td>Total productos</td>
+            <td> 13</td>
+            <td class="font-weight-bold"> $32.000</td>`
+            let boton_vaciar = document.getElementById("vaciar_carro");
+            boton_vaciar.addEventListener("click", vaciar_carrito);
+        return  
+    }
     
-    localStorage.removeItem("carrito", e.target);
-
-    Swal.fire({
-        icon: 'error',
-        title: 'Se elimino un producto',
-        text: 'Que lastima!'
-    })
+   
 }
 
 
-let vaciar_carro = document.querySelectorAll(".vaciar_carrito");
 
-function vaciar_carrito(e){
-    
-    localStorage.removeItem("carrito", e.target);
 
+// function borrar_producto(e) {
+
+//     // localStorage.removeItem("carrito", e.target);
+//     //  COMO HAGO PARA BORRAR 1 SOLO
+//     mostrarCarrito(traerLocalStorage());
+//     Swal.fire({
+//         icon: 'error',
+//         title: 'Se elimino un producto',
+//         text: 'Que lastima!'
+//     })
+// }
+
+function vaciar_carrito(e) {
+    localStorage.clear();
+    mostrarCarrito(traerLocalStorage());
     Swal.fire({
         icon: 'error',
         title: 'Se vacio el carrito',
@@ -259,4 +326,3 @@ function vaciar_carrito(e){
 // zapatillas.forEach(i => {
 //     zapas.innerHTML += `<div class="d_articulos"> <p class="p_articulos"> <p>${i.marca}</p> <p>${i.nombre}</p> <p>${i.image}</p>  </p> </div>`
 // });
-
