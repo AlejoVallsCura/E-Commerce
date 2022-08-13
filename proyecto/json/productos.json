@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "marca": "Nike",
+        "categoria": "",
+        "nombre": "Air Force 1",
+        "precio": "31.000",
+        "image": "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+    },
+    {
+        "id": 2,
+        "marca": "Adidas",
+        "categoria": "",
+        "nombre": "All Star",
+        "precio": "28.000",
+        "image": "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
+    },
+    {
+        "id": 10,
+        "marca": "Puma",
+        "categoria": "",
+        "nombre": "Pmas 102",
+        "precio": "19.500",
+        "image": "<img src='../imagenes/zapatillas/puma.png' />"
+    },
+    {
+        "id": 3,
+        "marca": "Nike",
+        "categoria": "",
+        "nombre": "Revolution",
+        "precio": "20.600",
+        "image": "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+    },
+    {
+        "id": 4,
+        "marca": "Shoes",
+        "categoria": "",
+        "nombre": "EQ78",
+        "precio": "19.000",
+        "image": "<img src='../imagenes/zapatillas/shoes.png' />"
+    },
+    {
+        "id": 5,
+        "marca": "Adidas",
+        "categoria": "",
+        "nombre": "NMD",
+        "precio": "11.200",
+        "image": "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
+    },
+    {
+        "id": 11,
+        "marca": "Puma",
+        "categoria": "",
+        "nombre": "P Max",
+        "precio": "13.900",
+        "image": "<img src='../imagenes/zapatillas/puma.png' />"
+    },
+    {
+        "id": 6,
+        "marca": "Shoes",
+        "categoria": "",
+        "nombre": "Run-T",
+        "precio": "18.000",
+        "image": "<img src='../imagenes/zapatillas/shoes.png' />"
+    },
+    {
+        "id": 7,
+        "marca": "Nike",
+        "categoria": "",
+        "nombre": "Air Force 1",
+        "precio": "14.900",
+        "image": "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+    },
+    {
+        "id": 13,
+        "marca": "NewBalance",
+        "categoria": "",
+        "nombre": "NewStyle",
+        "precio": "22.300",
+        "image": "<img src='../imagenes/zapatillas/newbal-removebg-preview.png' />"
+    },
+    {
+        "id": 8,
+        "marca": "Adidas",
+        "categoria": "",
+        "nombre": "All Star",
+        "precio": "16.500",
+        "image": "<img src='../imagenes/zapatillas/wjffl5e1.bmp' />"
+    },
+    {
+        "id": 9,
+        "marca": "Nike",
+        "categoria": "",
+        "nombre": "AirMax97",
+        "precio": "22.300",
+        "image": "<img src='../imagenes/zapatillas/otroLogo-removebg-preview.png' />"
+    },
+    {
+        "id": 14,
+        "marca": "NewBalance",
+        "categoria": "",
+        "nombre": "Insan",
+        "precio": "22.300",
+        "image": "<img src='../imagenes/zapatillas/newbal-removebg-preview.png' />"
+    },
+    {
+        "id": 12,
+        "marca": "Puma",
+        "categoria": "",
+        "nombre": "Pumas 311",
+        "precio": "27.500",
+        "image": "<img src='../imagenes/zapatillas/puma.png' />"
+    },
+    {
+        "id": 15,
+        "marca": "Shoes",
+        "categoria": "",
+        "nombre": "32 Max",
+        "precio": "9.000",
+        "image": "<img src='../imagenes/zapatillas/shoes.png' />"
+    }
+    ]
