@@ -11,17 +11,25 @@ function pintarProducto() {
             zapas.innerHTML = ""
             data.forEach(i => {
                 zapas.innerHTML += `
-            <div class="d_articulos"> 
-                <p class="p_articulos"> 
-                    <h5>${i.marca} ${i.nombre}</h5> 
-                    <h4>$ ${i.precio}</h4>  
-                    <p>${i.image}</p> 
-                </p>
-                    <button id="${i.id}" class="buy-btn botonCompra">Agregar al Carrito</button>
-            </div>`
+        <div class="d_articulos"> 
+            <p class="p_articulos"> 
+                <h5>${i.marca} ${i.nombre}</h5> 
+                <h4>$ ${i.precio}</h4>  
+                <p>${i.image}</p> 
+            </p>
+                <button id="${i.id}" class="buy-btn botonCompra">Agregar al Carrito</button>
+        </div>`
+            })
+            document.addEventListener("click", e => {
+                if (e.target.matches(".botonCompra")) {
+                    agregar_al_carrito(e);
+                }
             })
         })
 }
+
+
+
 
 
 //  BOTON COMPRAR - CARRITO 
@@ -31,12 +39,6 @@ function traerLocalStorage() {
 }
 traerLocalStorage();
 
-
-document.addEventListener("click", e => {
-    if (e.target.matches(".botonCompra")){
-        agregar_al_carrito(e);
-    }
-})
 
 
 function agregar_al_carrito(e) {
@@ -72,12 +74,15 @@ function agregar_al_carrito(e) {
 
     Toast.fire({
         icon: 'success',
-        title: 'Producto agregado al carrito'
+        title: 'Producto agregado al carrito',
+        confirmButtonColor: '#000'
     })
 }
 
 
 document.getElementById("carroBoton").addEventListener("click", mostrarCarrito);
+
+let total = 0;
 
 function mostrarCarrito() {
 
@@ -125,6 +130,8 @@ function mostrarCarrito() {
         tabla.append(fila);
     });
 
+   
+   
     let botones_borrar = document.querySelectorAll(".borrar_elemento");
     for (let btn of botones_borrar) {
         btn.addEventListener("click", borrar_producto)
@@ -139,14 +146,23 @@ function mostrarCarrito() {
     }
 
 
-    if (carrito.length > -1) {
+    carrito.forEach(e => {
+        let precio_a = e.precio.replace("$", "") 
+        let precio_n = parseFloat(precio_a);
+        total = total + precio_n ;
 
+        console.log(precio_n);
+    });
+
+    if (carrito.length > -1) {
+        cargar_total()
         footer.innerHTML = `
         <td><button class="btn btn-danger btn-sm" id="vaciar_carro">Vaciar todo</button></td>
         <td><button class="btn btn-success btn-sm" id="comprar">Comprar</button></td>
         <td>Total productos</td>
         <td>${carrito.length}</td>
-        <td class="font-weight-bold"> $</td>`
+        
+        <td class="font-weight-bold"> $${total}</td>`
 
         let boton_vaciar = document.getElementById("vaciar_carro");
         boton_vaciar.addEventListener("click", vaciar_carrito);
@@ -156,6 +172,18 @@ function mostrarCarrito() {
 
     }
 }
+
+function cargar_total(){
+    total = 0
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.forEach(e => {
+        let precio_a = e.precio.replace("$", "") 
+        let precio_n = parseFloat(precio_a);
+        total = total + precio_n ;
+        console.log(precio_n);
+    });
+}
+
 
 
 function borrar_producto(e) {
@@ -173,9 +201,10 @@ function borrar_producto(e) {
     Swal.fire({
         icon: 'error',
         title: 'Se elimino un producto',
-        text: 'Que lastima!'
+        text: 'Que lastima!',
+        confirmButtonColor: '#000'
     })
-    mostrarCarrito()
+    mostrarCarrito();
 }
 
 function vaciar_carrito(e) {
@@ -184,34 +213,44 @@ function vaciar_carrito(e) {
     Swal.fire({
         icon: 'error',
         title: 'Se vacio el carrito',
-        text: 'Ve a la tienda a llenarlo!'
-    })
+        text: 'Ve a la tienda a llenarlo!',
+        confirmButtonColor: '#000'
+    }).then(function() {
+        window.location = "/proyecto/html/tienda.html";
+    });
 }
 
-function hacer_checkout() {
-    Swal.fire({
-        title: 'Multiple inputs',
-        html: '<input id="swal-input1" class="swal2-input">' +
-            '<input id="swal-input2" class="swal2-input">',
-        focusConfirm: false,
-        preConfirm: () => {
-            return [
-                document.getElementById('swal-input1').value,
-                document.getElementById('swal-input2').value,
-                localStorage.clear()
-            ]
-        }
+async function hacer_checkout() {
+    let {
+        value: email
+    } = await Swal.fire({
+        title: 'Ingrese su Email',
+        input: 'email',
+        inputPlaceholder: 'Ingrese su direccion de correo electronico',
+        confirmButtonColor: '#000'
     })
 
-    if (formValues) {
-        Swal.fire(JSON.stringify(formValues))
+    if (email) {
+        Swal.fire({
+            title: 'Gracias por su compra!',
+            text: `No olvides revisar tu mail (${email}) para terminar la compra.`,
+            width: 600,
+            padding: '3em',
+            color: '#000',
+            confirmButtonColor: '#000',
+            backdrop: `
+              #fdbe01
+              left top
+              no-repeat
+            `
+        }).then(function() {
+            window.location = "/proyecto/index.html";
+            localStorage.clear();
+            mostrarCarrito(traerLocalStorage());
+        });
     }
+
 }
-
-
-
-
-
 
 
 
